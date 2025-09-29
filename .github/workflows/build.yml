@@ -1,0 +1,34 @@
+name: Build & Publish Trend Barometer
+
+on:
+  schedule:
+    - cron: "15 22 * * MON-FRI"   # weekdays 22:15 UTC (change if you want)
+  workflow_dispatch: {}           # manual "Run workflow" button
+  push:
+    branches: [ main ]            # also rebuild when you push code
+
+permissions:
+  contents: write                 # allow committing generated files
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install -r requirements.txt
+
+      - name: Generate barometer
+        run: python src/main.py
+
+      - name: Commit updated docs
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/*.png docs/*.csv docs/index.html || true
+          git commit -m "Update barometer" || echo "No changes to commit"
+          git push

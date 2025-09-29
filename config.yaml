@@ -1,0 +1,13 @@
+tickers:
+  - EURUSD=X      # FX
+  - GBPUSD=X
+  - JPY=X         # USD/JPY index from Yahoo; prefer "JPY=X"? pick symbols you trust
+  - GC=F          # Gold Futures
+  - CL=F          # WTI Crude
+  - ZW=F          # Wheat
+  - ^GSPC         # S&P 500
+  - ^NDX          # Nasdaq 100
+history_days: 400  # enough for 200DMA + breathing room
+output_dir: docs
+chart_filename: trend_barometer.png
+csv_filename: trend_scores.csv
