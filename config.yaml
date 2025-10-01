@@ -41,6 +41,7 @@ tickers:
   - QQQ         # Nasdaq 100 ETF
   - IWM         # Russell 2000 ETF
 
+
 history_days: 800      # enough to compute SMA200 and give chart context
 chart_lookback: 400
 output_dir: docs
