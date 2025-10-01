@@ -1,13 +1,11 @@
 tickers:
-  - EURUSD=X      # FX
-  - GBPUSD=X
-  - JPY=X         # USD/JPY index from Yahoo; prefer "JPY=X"? pick symbols you trust
-  - GC=F          # Gold Futures
-  - CL=F          # WTI Crude
-  - ZW=F          # Wheat
-  - ^GSPC         # S&P 500
-  - ^NDX          # Nasdaq 100
-history_days: 400  # enough for 200DMA + breathing room
+  - CADUSD=X
+  - HG=F
+  - PL=F
+  - ^TNX
+  - URA
+history_days: 800      # enough to compute SMA200 and give chart context
+chart_lookback: 400
 output_dir: docs
-chart_filename: trend_barometer.png
-csv_filename: trend_scores.csv
+csv_filename: latest_prices_sma.csv
+dashboard_title: "Price & SMA Dashboard"

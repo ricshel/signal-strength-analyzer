@@ -1,3 +1,108 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><title>Trend Barometer</title></head>
-<body><h1>Trend Barometer</h1><img src="trend_barometer.png"></body></html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Price & SMA Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bg:#fff; --fg:#111; --muted:#666; --card:#f9fafb; --border:#e5e7eb;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0b0d10; --fg:#e7eaee; --muted:#a1a7b0; --card:#12161c; --border:#22272f; }
+}
+* { box-sizing:border-box; }
+body { background:var(--bg); color:var(--fg); font: 15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial; margin:16px; }
+h1 { margin: 8px 0 16px; font-size: 22px; }
+.gallery { display:grid; grid-template-columns: repeat(auto-fill, minmax(360px,1fr)); gap:14px; align-items:start; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; }
+.card img { width:100%; height:auto; border-radius:8px; display:block; }
+.head { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:8px; }
+h3 { margin:0; font-size:16px; font-weight:600; }
+.date { color:var(--muted); font-size:12px; }
+.gridmeta { display:grid; grid-template-columns:auto 1fr; gap:6px 12px; margin-top:8px; }
+footer { margin-top:20px; color:var(--muted); font-size:13px; }
+a { color:inherit; }
+</style>
+</head>
+<body>
+<h1>Price & SMA Dashboard</h1>
+<div class="gallery">
+
+        <div class="card">
+          <div class="head">
+            <h3>^TNX</h3>
+            <div class="date">2025-10-01</div>
+          </div>
+          <img src="charts/^TNX.png" alt="^TNX chart" loading="lazy">
+          <div class="gridmeta">
+            <div>Close</div><b>4.102</b>
+            <div>SMA20</div><b>4.10125</b>
+            <div>SMA50</div><b>4.2141</b>
+            <div>SMA200</div><b>4.36157</b>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="head">
+            <h3>CADUSD=X</h3>
+            <div class="date">2025-10-01</div>
+          </div>
+          <img src="charts/CADUSD=X.png" alt="CADUSD=X chart" loading="lazy">
+          <div class="gridmeta">
+            <div>Close</div><b>0.717417</b>
+            <div>SMA20</div><b>0.723482</b>
+            <div>SMA50</div><b>0.725122</b>
+            <div>SMA200</div><b>0.714437</b>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="head">
+            <h3>HG=F</h3>
+            <div class="date">2025-10-01</div>
+          </div>
+          <img src="charts/HG=F.png" alt="HG=F chart" loading="lazy">
+          <div class="gridmeta">
+            <div>Close</div><b>4.898</b>
+            <div>SMA20</div><b>4.6265</b>
+            <div>SMA50</div><b>4.667</b>
+            <div>SMA200</div><b>4.678927</b>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="head">
+            <h3>PL=F</h3>
+            <div class="date">2025-10-01</div>
+          </div>
+          <img src="charts/PL=F.png" alt="PL=F chart" loading="lazy">
+          <div class="gridmeta">
+            <div>Close</div><b>1591.400024</b>
+            <div>SMA20</div><b>1450.170001</b>
+            <div>SMA50</div><b>1392.330002</b>
+            <div>SMA200</div><b>1140.551997</b>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="head">
+            <h3>URA</h3>
+            <div class="date">2025-10-01</div>
+          </div>
+          <img src="charts/URA.png" alt="URA chart" loading="lazy">
+          <div class="gridmeta">
+            <div>Close</div><b>48.539902</b>
+            <div>SMA20</div><b>45.671995</b>
+            <div>SMA50</div><b>42.183798</b>
+            <div>SMA200</div><b>32.22062</b>
+          </div>
+        </div>
+        
+</div>
+<footer>
+  <div>Auto-generated from Yahoo Finance (adjusted close). Updated on 2025-10-01.</div>
+  <div><a href="latest_prices_sma.csv" download>Download latest values (CSV)</a></div>
+</footer>
+</body>
+</html>
