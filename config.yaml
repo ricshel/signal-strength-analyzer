@@ -1,9 +1,21 @@
 tickers:
+  # FX
+  - AUDUSD=X
   - CADUSD=X
-  - HG=F
-  - PL=F
-  - ^TNX
-  - URA
+  - EURCHF=X
+  - EURGBP=X
+  - EURJPY=X
+  - EURUSD=X
+  - GBPUSD=X
+  - MXNJPY=X
+  - NZDUSD=X
+
+  # Commodities / Futures
+  - HG=F        # Copper
+  - CT=F        # Cotton No.2
+  - BZ=F        # Brent Crude
+  - CL=F        # WTI Cr
+
 history_days: 800      # enough to compute SMA200 and give chart context
 chart_lookback: 400
 output_dir: docs
