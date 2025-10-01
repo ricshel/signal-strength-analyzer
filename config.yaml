@@ -1,9 +1,26 @@
 tickers:
-  # Commodities / Futures
+  # Metals
   - HG=F        # Copper
-  - CT=F        # Cotton No.2
+  - PL=F        # Platinum
+  - SI=F        # Silver
+  - GC=F        # Gold
+
+  # Energy
+  - CL=F        # WTI Crude
   - BZ=F        # Brent Crude
-  - CL=F        # WTI Cr
+  - NG=F        # Natural Gas
+
+  # Agriculture
+  - CT=F        # Cotton No.2
+  - ZC=F        # Corn
+  - ZS=F        # Soybeans
+  - ZW=F        # Wheat
+
+  # Rates / Bonds
+  - ^TNX        # US 10-Year Treasury Yield
+
+  # Equities / ETFs
+  - URA         # Uranium ETF
 
 history_days: 800      # enough to compute SMA200 and give chart context
 chart_lookback: 400
