@@ -127,24 +127,44 @@ def plot_ticker(df: pd.DataFrame, ticker: str, out_dir: str, lookback: int = 400
     return out_path
 
 
-def plot_barometer(df_scores: pd.DataFrame, out_path: str) -> None:
-    # sort so strongest at top
+def plot_barometer(rows_scores, out_path: str) -> None:
+    # Accept either list[dict] or DataFrame
+    if isinstance(rows_scores, list):
+        df_scores = pd.DataFrame(rows_scores)
+    else:
+        df_scores = rows_scores.copy()
+
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+
+    # keep only computed scores
+    if "score" not in df_scores.columns:
+        df_scores["score"] = None
+    df_scores = df_scores[df_scores["score"].notna()]
+
+    if df_scores.empty:
+        plt.figure(figsize=(8, 2))
+        plt.text(0.5, 0.5, "No scores (not enough history)", ha="center", va="center")
+        plt.axis("off")
+        plt.tight_layout()
+        plt.savefig(out_path, dpi=180, bbox_inches="tight")
+        plt.close()
+        return
+
     df_scores = df_scores.sort_values("score")
     labels = df_scores["ticker"].tolist()
     scores = df_scores["score"].tolist()
     y = range(len(labels))
 
-    fig, ax = plt.subplots(figsize=(8.5, 5))
+    fig, ax = plt.subplots(figsize=(9, 5))
     ax.barh(y, scores)
     ax.set_yticks(y, labels)
     ax.axvline(0, linewidth=1)
+    ax.set_xlim(-20, 20)
     ax.set_xlabel("Trend Score (−20 … +20)")
     ax.set_title("Trend Barometer")
     plt.tight_layout()
-    os.makedirs(os.path.dirname(out_path), exist_ok=True)
     fig.savefig(out_path, dpi=180, bbox_inches="tight")
     plt.close(fig)
-
 
 # ---------------- HTML ----------------
 
