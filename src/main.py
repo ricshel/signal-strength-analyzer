@@ -1,11 +1,4 @@
 #!/usr/bin/env python3
-# dashboard_and_barometer.py
-# Builds:
-#  - Per-ticker PNG charts (Close + SMA20/50/200)
-#  - latest_prices_sma.csv
-#  - Trend Barometer (±20) PNG from your SMA rules
-#  - trend_scores.csv
-#  - docs/index.html gallery that includes both sections
 
 from __future__ import annotations
 import os
@@ -154,38 +147,36 @@ def plot_barometer(df_scores: pd.DataFrame, out_path: str) -> None:
 
 
 # ---------------- HTML ----------------
-
 def write_page_single_image(title: str, docs_dir: str, baro_img: str, updated_on: str):
     html = f"""<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>{title}</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-:root {{ --bg:#fff; --fg:#111; --muted:#666; }}
-@media (prefers-color-scheme: dark) {{
-  :root {{ --bg:#0b0d10; --fg:#e7eaee; --muted:#a1a7b0; }}
-}}
-* {{ box-sizing:border-box; }}
-body {{ background:var(--bg); color:var(--fg); font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial; margin:16px; }}
-h1 {{ margin:8px 0 16px; font-size:22px; }}
-img.baro {{ width:100%; max-width:980px; height:auto; display:block; border-radius:10px; }}
-footer {{ margin-top:16px; color:var(--muted); font-size:12px; }}
-</style>
-</head>
-<body>
-<h1>{title}</h1>
-<img class="baro" src="{baro_img}" alt="Trend Barometer">
-<footer>Auto-generated from Yahoo Finance (adjusted close). Updated on {updated_on}.</footer>
-</body>
-</html>"""
-    os.makedirs(docs_dir, exist_ok=True)
-    with open(os.path.join(docs_dir, "index.html"), "w", encoding="utf-8") as f:
-        f.write(html)
+        <html>
+        <head>
+        <meta charset="utf-8">
+        <title>{title}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        :root {{ --bg:#fff; --fg:#111; --muted:#666; }}
+        @media (prefers-color-scheme: dark) {{
+        :root {{ --bg:#0b0d10; --fg:#e7eaee; --muted:#a1a7b0; }}
+        }}
+        * {{ box-sizing:border-box; }}
+        body {{ background:var(--bg); color:var(--fg); font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial; margin:16px; }}
+        h1 {{ margin:8px 0 16px; font-size:22px; }}
+        img.baro {{ width:100%; max-width:980px; height:auto; display:block; border-radius:10px; }}
+        footer {{ margin-top:16px; color:var(--muted); font-size:12px; }}
+        </style>
+        </head>
+        <body>
+        <h1>{title}</h1>
+        <img class="baro" src="{baro_img}" alt="Trend Barometer">
+        <footer>Auto-generated from Yahoo Finance (adjusted close). Updated on {updated_on}.</footer>
+        </body>
+        </html>"""
+            os.makedirs(docs_dir, exist_ok=True)
+            with open(os.path.join(docs_dir, "index.html"), "w", encoding="utf-8") as f:
+                f.write(html)
 
 # ---------------- Orchestration ----------------
-
 def main():
     cfg = load_config()
 

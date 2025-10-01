@@ -1,15 +1,4 @@
 tickers:
-  # FX
-  - AUDUSD=X
-  - CADUSD=X
-  - EURCHF=X
-  - EURGBP=X
-  - EURJPY=X
-  - EURUSD=X
-  - GBPUSD=X
-  - MXNJPY=X
-  - NZDUSD=X
-
   # Commodities / Futures
   - HG=F        # Copper
   - CT=F        # Cotton No.2
