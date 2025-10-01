@@ -5,15 +5,14 @@
 <title>Price & SMA Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-:root {
-  --bg:#fff; --fg:#111; --muted:#666; --card:#f9fafb; --border:#e5e7eb;
-}
+:root { --bg:#fff; --fg:#111; --muted:#666; --card:#f9fafb; --border:#e5e7eb; }
 @media (prefers-color-scheme: dark) {
   :root { --bg:#0b0d10; --fg:#e7eaee; --muted:#a1a7b0; --card:#12161c; --border:#22272f; }
 }
 * { box-sizing:border-box; }
 body { background:var(--bg); color:var(--fg); font: 15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial; margin:16px; }
-h1 { margin: 8px 0 16px; font-size: 22px; }
+h1 { margin:8px 0 16px; font-size:22px; }
+section { margin-bottom:22px; }
 .gallery { display:grid; grid-template-columns: repeat(auto-fill, minmax(360px,1fr)); gap:14px; align-items:start; }
 .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; }
 .card img { width:100%; height:auto; border-radius:8px; display:block; }
@@ -23,12 +22,25 @@ h3 { margin:0; font-size:16px; font-weight:600; }
 .gridmeta { display:grid; grid-template-columns:auto 1fr; gap:6px 12px; margin-top:8px; }
 footer { margin-top:20px; color:var(--muted); font-size:13px; }
 a { color:inherit; }
+img.baro { width:100%; max-width:980px; height:auto; display:block; border-radius:10px; }
+.links a { margin-right:12px; }
 </style>
 </head>
 <body>
 <h1>Price & SMA Dashboard</h1>
-<div class="gallery">
 
+<section>
+  <h2>Trend Barometer (−20 … +20)</h2>
+  <img class="baro" src="trend_barometer.png" alt="Trend Barometer">
+  <div class="links">
+    <a href="trend_scores.csv" download>Download trend scores (CSV)</a>
+  </div>
+</section>
+
+<section>
+  <h2>Per-Ticker Price & SMAs</h2>
+  <div class="gallery">
+  
         <div class="card">
           <div class="head">
             <h3>^TNX</h3>
@@ -36,10 +48,10 @@ a { color:inherit; }
           </div>
           <img src="charts/^TNX.png" alt="^TNX chart" loading="lazy">
           <div class="gridmeta">
-            <div>Close</div><b>4.102</b>
-            <div>SMA20</div><b>4.10125</b>
-            <div>SMA50</div><b>4.2141</b>
-            <div>SMA200</div><b>4.36157</b>
+            <div>Close</div><b>4.106</b>
+            <div>SMA20</div><b>4.10145</b>
+            <div>SMA50</div><b>4.21418</b>
+            <div>SMA200</div><b>4.36159</b>
           </div>
         </div>
         
@@ -50,9 +62,9 @@ a { color:inherit; }
           </div>
           <img src="charts/CADUSD=X.png" alt="CADUSD=X chart" loading="lazy">
           <div class="gridmeta">
-            <div>Close</div><b>0.717417</b>
-            <div>SMA20</div><b>0.723482</b>
-            <div>SMA50</div><b>0.725122</b>
+            <div>Close</div><b>0.717345</b>
+            <div>SMA20</div><b>0.723478</b>
+            <div>SMA50</div><b>0.725121</b>
             <div>SMA200</div><b>0.714437</b>
           </div>
         </div>
@@ -64,10 +76,10 @@ a { color:inherit; }
           </div>
           <img src="charts/HG=F.png" alt="HG=F chart" loading="lazy">
           <div class="gridmeta">
-            <div>Close</div><b>4.898</b>
-            <div>SMA20</div><b>4.6265</b>
-            <div>SMA50</div><b>4.667</b>
-            <div>SMA200</div><b>4.678927</b>
+            <div>Close</div><b>4.8965</b>
+            <div>SMA20</div><b>4.626425</b>
+            <div>SMA50</div><b>4.66697</b>
+            <div>SMA200</div><b>4.67892</b>
           </div>
         </div>
         
@@ -78,10 +90,10 @@ a { color:inherit; }
           </div>
           <img src="charts/PL=F.png" alt="PL=F chart" loading="lazy">
           <div class="gridmeta">
-            <div>Close</div><b>1571.699951</b>
-            <div>SMA20</div><b>1449.184998</b>
-            <div>SMA50</div><b>1391.936001</b>
-            <div>SMA200</div><b>1140.453497</b>
+            <div>Close</div><b>1592.800049</b>
+            <div>SMA20</div><b>1450.240002</b>
+            <div>SMA50</div><b>1392.358003</b>
+            <div>SMA200</div><b>1140.558997</b>
           </div>
         </div>
         
@@ -92,17 +104,21 @@ a { color:inherit; }
           </div>
           <img src="charts/URA.png" alt="URA chart" loading="lazy">
           <div class="gridmeta">
-            <div>Close</div><b>48.549999</b>
-            <div>SMA20</div><b>45.6725</b>
-            <div>SMA50</div><b>42.184</b>
-            <div>SMA200</div><b>32.22067</b>
+            <div>Close</div><b>48.689899</b>
+            <div>SMA20</div><b>45.679495</b>
+            <div>SMA50</div><b>42.186798</b>
+            <div>SMA200</div><b>32.22137</b>
           </div>
         </div>
         
-</div>
+  </div>
+  <div class="links" style="margin-top:10px;">
+    <a href="latest_prices_sma.csv" download>Download latest values (CSV)</a>
+  </div>
+</section>
+
 <footer>
   <div>Auto-generated from Yahoo Finance (adjusted close). Updated on 2025-10-01.</div>
-  <div><a href="latest_prices_sma.csv" download>Download latest values (CSV)</a></div>
 </footer>
 </body>
 </html>
