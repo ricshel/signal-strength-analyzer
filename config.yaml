@@ -1,26 +1,45 @@
 tickers:
   # Metals
+  - GC=F        # Gold
+  - SI=F        # Silver
   - HG=F        # Copper
   - PL=F        # Platinum
-  - SI=F        # Silver
-  - GC=F        # Gold
+  - PA=F        # Palladium
 
   # Energy
   - CL=F        # WTI Crude
   - BZ=F        # Brent Crude
   - NG=F        # Natural Gas
+  - RB=F        # Gasoline RBOB
+  - HO=F        # Heating Oil
 
   # Agriculture
-  - CT=F        # Cotton No.2
   - ZC=F        # Corn
   - ZS=F        # Soybeans
   - ZW=F        # Wheat
+  - CT=F        # Cotton No.2
+  - KC=F        # Coffee
+  - SB=F        # Sugar
+  - CC=F        # Cocoa
+  - LB=F        # Lumber
 
-  # Rates / Bonds
-  - ^TNX        # US 10-Year Treasury Yield
+  # Interest Rates / Bonds
+  - ^IRX        # US 13-Week T-Bill Yield
+  - ^FVX        # US 5-Year Yield
+  - ^TNX        # US 10-Year Yield
+  - ^TYX        # US 30-Year Yield
 
-  # Equities / ETFs
+  # Currencies (Futures)
+  - DX-Y.NYB    # US Dollar Index
+  - EURUSD=X    # Euro / USD
+  - JPY=X       # USD / JPY
+  - GBPUSD=X    # British Pound / USD
+
+  # ETFs / Misc
   - URA         # Uranium ETF
+  - SPY         # S&P 500 ETF
+  - QQQ         # Nasdaq 100 ETF
+  - IWM         # Russell 2000 ETF
 
 history_days: 800      # enough to compute SMA200 and give chart context
 chart_lookback: 400
