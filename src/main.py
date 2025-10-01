@@ -311,6 +311,5 @@ def main():
 
     print(f"Done. Open {os.path.join(docs_dir, 'index.html')}")
 
-
 if __name__ == "__main__":
     main()
