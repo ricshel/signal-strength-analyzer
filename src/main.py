@@ -155,33 +155,7 @@ def plot_barometer(df_scores: pd.DataFrame, out_path: str) -> None:
 
 # ---------------- HTML ----------------
 
-def write_gallery(rows_latest: List[dict], docs_dir: str, charts_subdir: str,
-                  title: str, baro_img: str, latest_csv: str, scores_csv: str):
-    os.makedirs(docs_dir, exist_ok=True)
-    rows_sorted = sorted(rows_latest, key=lambda r: r["ticker"].lower())
-
-    cards = []
-    for r in rows_sorted:
-        img = f"{charts_subdir}/{r['ticker']}.png"
-        def fmt(x): return "—" if x is None else x
-        cards.append(f"""
-        <div class="card">
-          <div class="head">
-            <h3>{r['ticker']}</h3>
-            <div class="date">{r['date']}</div>
-          </div>
-          <img src="{img}" alt="{r['ticker']} chart" loading="lazy">
-          <div class="gridmeta">
-            <div>Close</div><b>{fmt(r['close'])}</b>
-            <div>SMA20</div><b>{fmt(r['sma20'])}</b>
-            <div>SMA50</div><b>{fmt(r['sma50'])}</b>
-            <div>SMA200</div><b>{fmt(r['sma200'])}</b>
-          </div>
-        </div>
-        """)
-
-    updated_on = rows_sorted[0]['date'] if rows_sorted else ""
-
+def write_page_single_image(title: str, docs_dir: str, baro_img: str, updated_on: str):
     html = f"""<!doctype html>
 <html>
 <head>
@@ -189,127 +163,74 @@ def write_gallery(rows_latest: List[dict], docs_dir: str, charts_subdir: str,
 <title>{title}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-:root {{ --bg:#fff; --fg:#111; --muted:#666; --card:#f9fafb; --border:#e5e7eb; }}
+:root {{ --bg:#fff; --fg:#111; --muted:#666; }}
 @media (prefers-color-scheme: dark) {{
-  :root {{ --bg:#0b0d10; --fg:#e7eaee; --muted:#a1a7b0; --card:#12161c; --border:#22272f; }}
+  :root {{ --bg:#0b0d10; --fg:#e7eaee; --muted:#a1a7b0; }}
 }}
 * {{ box-sizing:border-box; }}
-body {{ background:var(--bg); color:var(--fg); font: 15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial; margin:16px; }}
+body {{ background:var(--bg); color:var(--fg); font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial; margin:16px; }}
 h1 {{ margin:8px 0 16px; font-size:22px; }}
-section {{ margin-bottom:22px; }}
-.gallery {{ display:grid; grid-template-columns: repeat(auto-fill, minmax(360px,1fr)); gap:14px; align-items:start; }}
-.card {{ background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; }}
-.card img {{ width:100%; height:auto; border-radius:8px; display:block; }}
-.head {{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:8px; }}
-h3 {{ margin:0; font-size:16px; font-weight:600; }}
-.date {{ color:var(--muted); font-size:12px; }}
-.gridmeta {{ display:grid; grid-template-columns:auto 1fr; gap:6px 12px; margin-top:8px; }}
-footer {{ margin-top:20px; color:var(--muted); font-size:13px; }}
-a {{ color:inherit; }}
 img.baro {{ width:100%; max-width:980px; height:auto; display:block; border-radius:10px; }}
-.links a {{ margin-right:12px; }}
+footer {{ margin-top:16px; color:var(--muted); font-size:12px; }}
 </style>
 </head>
 <body>
 <h1>{title}</h1>
-
-<section>
-  <h2>Trend Barometer (−20 … +20)</h2>
-  <img class="baro" src="{baro_img}" alt="Trend Barometer">
-  <div class="links">
-    <a href="{scores_csv}" download>Download trend scores (CSV)</a>
-  </div>
-</section>
-
-<section>
-  <h2>Per-Ticker Price & SMAs</h2>
-  <div class="gallery">
-  {''.join(cards)}
-  </div>
-  <div class="links" style="margin-top:10px;">
-    <a href="{latest_csv}" download>Download latest values (CSV)</a>
-  </div>
-</section>
-
-<footer>
-  <div>Auto-generated from Yahoo Finance (adjusted close). Updated on {updated_on}.</div>
-</footer>
+<img class="baro" src="{baro_img}" alt="Trend Barometer">
+<footer>Auto-generated from Yahoo Finance (adjusted close). Updated on {updated_on}.</footer>
 </body>
 </html>"""
+    os.makedirs(docs_dir, exist_ok=True)
     with open(os.path.join(docs_dir, "index.html"), "w", encoding="utf-8") as f:
         f.write(html)
-
 
 # ---------------- Orchestration ----------------
 
 def main():
     cfg = load_config()
+
+    # Output folder for branch-deploy Pages
+    docs_dir: str = cfg.get("output_dir") or cfg.get("site_dir") or "docs"
+    os.makedirs(docs_dir, exist_ok=True)
+
     tickers: List[str] = cfg.get("tickers", [])
     if not tickers:
         raise SystemExit("No tickers found in config.yaml (expected key: tickers: [ ... ])")
 
-    days: int = int(cfg.get("history_days", 800))
-    docs_dir: str = cfg.get("output_dir", "docs")
-    charts_dir: str = os.path.join(docs_dir, "charts")
-    lookback: int = int(cfg.get("chart_lookback", 400))
-    latest_csv: str = cfg.get("latest_csv", "latest_prices_sma.csv")
-    scores_csv: str = cfg.get("scores_csv", "trend_scores.csv")
-    baro_img: str = cfg.get("barometer_image", "trend_barometer.png")
-    title: str = cfg.get("dashboard_title", "Price & SMA Dashboard")
+    days: int       = int(cfg.get("history_days", 800))
+    baro_img: str   = cfg.get("barometer_image", "trend_barometer.png")
+    title: str      = cfg.get("dashboard_title", "Trend Barometer")
 
-    os.makedirs(docs_dir, exist_ok=True)
-    os.makedirs(charts_dir, exist_ok=True)
+    print(f"[INFO] Using config: {cfg.get('_cfg_path')}")
+    print(f"[INFO] docs_dir={docs_dir}")
+    print(f"[INFO] Tickers ({len(tickers)}): {', '.join(tickers)}")
 
-    latest_rows: List[dict] = []
+    # Compute scores only (no per-ticker charts/CSVs)
     score_rows: List[dict] = []
-
+    updated_on = ""
     for t in tickers:
         try:
             df = fetch_prices(t, days)
             df = add_indicators(df)
-
-            # Per-ticker chart + latest values
-            if len(df) >= 20:
-                plot_ticker(df, t, charts_dir, lookback=lookback)
-                latest_rows.append(latest_row(df, t))
-            else:
-                print(f"[WARN] {t}: not enough history to plot")
-
-            # Scoring (needs 200 + 5)
-            try:
-                score_rows.append(score_from_df(t, df))
-            except Exception as e:
-                print(f"[WARN] {t}: scoring skipped — {e}")
-
+            # remember a date just to show "Updated on" (use the latest df date)
+            if not updated_on:
+                updated_on = df.index[-1].date().isoformat()
+            score_rows.append(score_from_df(t, df))
         except Exception as e:
             print(f"[WARN] {t}: {e}")
 
-    if not latest_rows and not score_rows:
-        raise SystemExit("No outputs produced.")
+    if not score_rows:
+        raise SystemExit("No scores produced.")
 
-    # Write CSVs
-    if latest_rows:
-        pd.DataFrame(latest_rows).sort_values("ticker").to_csv(
-            os.path.join(docs_dir, latest_csv), index=False
-        )
-    if score_rows:
-        df_scores = pd.DataFrame(score_rows).sort_values("ticker")
-        df_scores.to_csv(os.path.join(docs_dir, scores_csv), index=False)
-        # Barometer
-        plot_barometer(df_scores[["ticker", "score"]].copy(), os.path.join(docs_dir, baro_img))
+    # Save the barometer image into docs/
+    baro_path = os.path.join(docs_dir, baro_img)
+    plot_barometer(score_rows, baro_path)
 
-    # HTML
-    write_gallery(
-        rows_latest=latest_rows,
-        docs_dir=docs_dir,
-        charts_subdir=os.path.basename(charts_dir),
-        title=title,
-        baro_img=baro_img,
-        latest_csv=latest_csv,
-        scores_csv=scores_csv,
-    )
+    # Minimal HTML with only the barometer
+    write_page_single_image(title, docs_dir, baro_img, updated_on or "")
 
-    print(f"Done. Open {os.path.join(docs_dir, 'index.html')}")
+    print(f"[DONE] HTML: {os.path.join(docs_dir, 'index.html')}")
+    print(f"[DONE] Image: {baro_path}")
 
 if __name__ == "__main__":
     main()
