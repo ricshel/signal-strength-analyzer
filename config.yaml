@@ -5,6 +5,10 @@ tickers:
   - HG=F        # Copper
   - PL=F        # Platinum
   - PA=F        # Palladium
+  - ALI=F       # Aluminum
+  - ZN=F        # Zinc
+  - NI=F        # Nickel
+  - URA         # Uranium ETF
 
   # Energy
   - CL=F        # WTI Crude
@@ -23,22 +27,19 @@ tickers:
   - CC=F        # Cocoa
 
   # Interest Rates / Bonds
-  - ^IRX        # US 13-Week T-Bill Yield
-  - ^FVX        # US 5-Year Yield
-  - ^TNX        # US 10-Year Yield
-  - ^TYX        # US 30-Year Yield
+  # - ^IRX        # US 13-Week T-Bill Yield
+  # - ^FVX        # US 5-Year Yield
+  # - ^TNX        # US 10-Year Yield
+  # - ^TYX        # US 30-Year Yield
 
   # Currencies (Futures)
-  - DX-Y.NYB    # US Dollar Index
-  - EURUSD=X    # Euro / USD
-  - JPY=X       # USD / JPY
-  - GBPUSD=X    # British Pound / USD
+  # - DX-Y.NYB    # US Dollar Index
+  # - EURUSD=X    # Euro / USD
+  # - JPY=X       # USD / JPY
+  # - GBPUSD=X    # British Pound / USD
 
   # ETFs / Misc
-  - URA         # Uranium ETF
-  - SPY         # S&P 500 ETF
-  # - QQQ         # Nasdaq 100 ETF
-  - IWM         # Russell 2000 ETF
+
 
 history_days: 800      # enough to compute SMA200 and give chart context
 chart_lookback: 400
