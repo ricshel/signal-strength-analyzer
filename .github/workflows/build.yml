@@ -2,7 +2,7 @@ name: Build & Publish Trend Barometer
 
 on:
   schedule:
-    - cron: "*/6 * * * *"
+    - cron: "30 21 * * MON-FRI"
   workflow_dispatch:
   push:
     branches: [ main ]
