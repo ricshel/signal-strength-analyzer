@@ -2,13 +2,20 @@ name: Build & Publish Trend Barometer
 
 on:
   schedule:
-    - cron: "15 22 * * MON-FRI"   # weekdays 22:15 UTC (change if you want)
-  workflow_dispatch: {}           # manual "Run workflow" button
+    - cron: "15 22 * * MON-FRI"
+  workflow_dispatch:
   push:
-    branches: [ main ]            # also rebuild when you push code
+    branches: [ main ]
 
+# Only what Pages needs — not 'contents: write'
 permissions:
-  contents: write                 # allow committing generated files
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -22,13 +29,22 @@ jobs:
 
       - run: pip install -r requirements.txt
 
+      # Your script writes index.html + trend_barometer.png into docs/
       - name: Generate barometer
         run: python src/main.py
 
-      - name: Commit updated docs
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@users.noreply.github.com"
-          git add docs/index.html docs/trend_barometer.png docs/.nojekyll || true
-          git commit -m "Update barometer" || echo "No changes to commit"
-          git push
+      # Upload the folder as the Pages artifact (no git commits)
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
