@@ -223,7 +223,9 @@ def main():
             df = add_indicators(df)
             # remember a date just to show "Updated on" (use the latest df date)
             if not updated_on:
-                updated_on = df.index[-1].date().isoformat()
+                data_date = df.index[-1].date().isoformat()
+                run_time  = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+                updated_on = f"{data_date} (generated {run_time})"
             score_rows.append(score_from_df(t, df))
         except Exception as e:
             print(f"[WARN] {t}: {e}")
