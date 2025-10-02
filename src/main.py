@@ -10,6 +10,7 @@ import pandas as pd
 import yfinance as yf
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+from datetime import datetime
 
 
 # ---------------- Config / IO ----------------
