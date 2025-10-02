@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 from __future__ import annotations
 import os
 import math
@@ -19,8 +18,6 @@ def load_config(path: str = "config.yaml") -> dict:
     with open(path, "r", encoding="utf-8") as f:
         return yaml.safe_load(f) or {}
 
-
-# ---------------- Data + Indicators ----------------
 
 def fetch_prices(ticker: str, days: int) -> pd.DataFrame:
     # yfinance changed auto_adjust default to True; set explicitly to be clear.
