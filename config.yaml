@@ -26,6 +26,9 @@ tickers:
   - SB=F        # Sugar
   - CC=F        # Cocoa
 
+  # Equities
+  - NVDA        # NVIDIA Corporation 
+
   # Interest Rates / Bonds
   # - ^IRX        # US 13-Week T-Bill Yield
   # - ^FVX        # US 5-Year Yield
