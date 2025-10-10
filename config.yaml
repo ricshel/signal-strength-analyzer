@@ -1,5 +1,5 @@
 tickers:
-  # Metals
+# Metals
   - GC=F        # Gold
   - SI=F        # Silver
   - HG=F        # Copper
@@ -9,15 +9,21 @@ tickers:
   - ZN=F        # Zinc
   - NI=F        # Nickel
   - URA         # Uranium ETF
+  - IRON_ORE    # Iron Ore (SGX futures)
+  - LIT         # Lithium & Battery Tech ETF
+  - REMX        # Rare Earth/Strategic Metals ETF
 
-  # Energy
+# Energy
   - CL=F        # WTI Crude
   - BZ=F        # Brent Crude
   - NG=F        # Natural Gas
   - RB=F        # Gasoline RBOB
   - HO=F        # Heating Oil
+  - COAL_AUS    # Australian Thermal Coal (ICE)
+  - URNM        # Uranium Miners ETF
+  - CARBON      # EU Carbon Emissions (EUA futures)
 
-  # Agriculture
+# Agriculture
   - ZC=F        # Corn
   - ZS=F        # Soybeans
   - ZW=F        # Wheat
@@ -25,24 +31,66 @@ tickers:
   - KC=F        # Coffee
   - SB=F        # Sugar
   - CC=F        # Cocoa
+  - LE=F        # Live Cattle
+  - HE=F        # Lean Hogs
+  - OJ=F        # Orange Juice
+  - FC=F        # Feeder Cattle
 
-  # Equities
-  - NVDA        # NVIDIA Corporation 
+# Indices
+  - ^GSPC       # S&P 500
+  - ^NDX        # Nasdaq 100
+  - ^DJI        # Dow Jones Industrial Average
+  - ^FTSE       # FTSE 100
+  - ^GDAXI      # DAX (Germany 40)
+  - ^FCHI       # CAC 40 (France)
+  - ^N225       # Nikkei 225
+  - ^HSI        # Hang Seng Index
+  - ^ASX200     # Australia 200
+  - ^STOXX50E   # Euro Stoxx 50
+  - ^VIX        # Volatility Index (S&P 500)
 
-  # Interest Rates / Bonds
-  # - ^IRX        # US 13-Week T-Bill Yield
-  # - ^FVX        # US 5-Year Yield
-  # - ^TNX        # US 10-Year Yield
-  # - ^TYX        # US 30-Year Yield
+# Currencies (Forex)
+  - EURUSD=X    # Euro / USD
+  - GBPUSD=X    # British Pound / USD
+  - USDJPY=X    # USD / Japanese Yen
+  - AUDUSD=X    # Australian Dollar / USD
+  - NZDUSD=X    # New Zealand Dollar / USD
+  - USDCAD=X    # USD / Canadian Dollar
+  - USDCHF=X    # USD / Swiss Franc
+  - EURGBP=X    # Euro / Pound
+  - EURJPY=X    # Euro / Yen
+  - GBPJPY=X    # Pound / Yen
 
-  # Currencies (Futures)
-  # - DX-Y.NYB    # US Dollar Index
-  # - EURUSD=X    # Euro / USD
-  # - JPY=X       # USD / JPY
-  # - GBPUSD=X    # British Pound / USD
+# Interest Rates / Bonds
+  - ^IRX        # US 13-Week T-Bill Yield
+  - ^FVX        # US 5-Year Yield
+  - ^TNX        # US 10-Year Yield
+  - ^TYX        # US 30-Year Yield
+  - ^UK10Y      # UK 10-Year Gilt Yield
+  - ^DE10Y      # German Bund 10-Year Yield
 
-  # ETFs / Misc
+# Equities
+  - NVDA        # NVIDIA Corporation
+  - AAPL        # Apple
+  - MSFT        # Microsoft
+  - AMZN        # Amazon
+  - TSLA        # Tesla
+  - META        # Meta Platforms
+  - GOOGL       # Alphabet
+  - BRK-B       # Berkshire Hathaway
+  - XLF         # Financials ETF
+  - XLK         # Tech ETF
+  - XLE         # Energy ETF
+  - ARKK        # ARK Innovation ETF
 
+# Cryptocurrency
+  - BTCUSD      # Bitcoin / USD
+  - ETHUSD      # Ethereum / USD
+  - LTCUSD      # Litecoin / USD
+  - XRPUSD      # Ripple / USD
+  - ADAUSD      # Cardano / USD
+  - SOLUSD      # Solana / USD
+  - DOGEUSD     # Dogecoin / USD
 
 history_days: 800      # enough to compute SMA200 and give chart context
 chart_lookback: 400
