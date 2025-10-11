@@ -1,5 +1,6 @@
 tickers:
 # Metals
+#
   - GC=F        # Gold
   - SI=F        # Silver
   - HG=F        # Copper
