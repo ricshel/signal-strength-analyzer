@@ -4,7 +4,6 @@ import os
 import math
 import warnings
 from typing import List, Dict
-
 import yaml
 import pandas as pd
 import yfinance as yf
