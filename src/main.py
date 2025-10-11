@@ -139,9 +139,12 @@ def plot_barometer(rows_scores, out_path: str) -> None:
         df_scores["score"] = None
     df_scores = df_scores[df_scores["score"].notna()]
 
+    # Filter rows to include only scores of +20 or -20
+    df_scores = df_scores[df_scores["score"].isin([20, -20])]
+
     if df_scores.empty:
         plt.figure(figsize=(8, 2))
-        plt.text(0.5, 0.5, "No scores (not enough history)", ha="center", va="center")
+        plt.text(0.5, 0.5, "No scores (only ±20 allowed)", ha="center", va="center")
         plt.axis("off")
         plt.tight_layout()
         plt.savefig(out_path, dpi=180, bbox_inches="tight")
