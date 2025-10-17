@@ -7,6 +7,7 @@ tickers:
   - PA=F        # Palladium
   - ALI=F       # Aluminum
   - ZN=F        # Zinc
+  - BTC
   - NI=F        # Nickel
   - URA         # Uranium ETF
   - IRON_ORE    # Iron Ore (SGX futures)
