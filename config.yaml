@@ -5,7 +5,6 @@ tickers:
   - HG=F        # Copper
   - PL=F        # Platinum
   - PA=F        # Palladium
-  - ALI=F       # Aluminum
   - ZN=F        # Zinc
   - NI=F        # Nickel
   - URA         # Uranium ETF
