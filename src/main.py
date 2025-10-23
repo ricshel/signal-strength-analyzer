@@ -12,7 +12,6 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from datetime import datetime
 
-
 # ---------------- Config / IO ----------------
 
 def load_config(path: str = "config.yaml") -> dict:
