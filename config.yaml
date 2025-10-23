@@ -5,41 +5,41 @@ tickers:
   - HG=F        # Copper
   - PL=F        # Platinum
   - PA=F        # Palladium
-  - ZN=F        # Zinc
-  - NI=F        # Nickel
-  - URA         # Uranium ETF
-  - REMX        # Rare Earth/Strategic Metals ETF
+#   - ZN=F        # Zinc
+#   - NI=F        # Nickel
+#   - URA         # Uranium ETF
+#   - REMX        # Rare Earth/Strategic Metals ETF
 
-# Energy
-  - BZ=F        # Brent Crude
-  - NG=F        # Natural Gas
-  - RB=F        # Gasoline RBOB
-  - HO=F        # Heating Oil
+# # Energy
+#   - BZ=F        # Brent Crude
+#   - NG=F        # Natural Gas
+#   - RB=F        # Gasoline RBOB
+#   - HO=F        # Heating Oil
 
-# Agriculture
-  - KC=F        # Coffee
+# # Agriculture
+#   - KC=F        # Coffee
 
-# Indices
-  - ^NDX        # Nasdaq 100
-  - ^FTSE       # FTSE 100
-  - ^GDAXI      # DAX (Germany 40)
-  - ^FCHI       # CAC 40 (France)
-  - ^N225       # Nikkei 225
-  - ^ASX200     # Australia 200
-  - ^STOXX50E   # Euro Stoxx 50
+# # Indices
+#   - ^NDX        # Nasdaq 100
+#   - ^FTSE       # FTSE 100
+#   - ^GDAXI      # DAX (Germany 40)
+#   - ^FCHI       # CAC 40 (France)
+#   - ^N225       # Nikkei 225
+#   - ^ASX200     # Australia 200
+#   - ^STOXX50E   # Euro Stoxx 50
 
-# Equities
-  - NVDA        # NVIDIA Corporation
-  - AAPL        # Apple
-  - MSFT        # Microsoft
-  - AMZN        # Amazon
-  - TSLA        # Tesla
-  - META        # Meta Platforms
-  - GOOGL       # Alphabet
-  - XLF         # Financials ETF
-  - XLK         # Tech ETF
-  - XLE         # Energy ETF
-  - ARKK        # ARK Innovation ETF
+# # Equities
+#   - NVDA        # NVIDIA Corporation
+#   - AAPL        # Apple
+#   - MSFT        # Microsoft
+#   - AMZN        # Amazon
+#   - TSLA        # Tesla
+#   - META        # Meta Platforms
+#   - GOOGL       # Alphabet
+#   - XLF         # Financials ETF
+#   - XLK         # Tech ETF
+#   - XLE         # Energy ETF
+#   - ARKK        # ARK Innovation ETF
 
 history_days: 800      # enough to compute SMA200 and give chart context
 chart_lookback: 400
