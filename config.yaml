@@ -5,8 +5,6 @@ tickers:
   - HG=F        # Copper
   - PL=F        # Platinum
   - PA=F        # Palladium
-  - ZN=F        # Zinc
-  - NI=F        # Nickel
   - URA         # Uranium ETF
   - REMX        # Rare Earth/Strategic Metals ETF
 
@@ -15,19 +13,9 @@ tickers:
   - NG=F        # Natural Gas
   - RB=F        # Gasoline RBOB
   - HO=F        # Heating Oil
-  - CARBON      # EU Carbon Emissions (EUA futures)
 
 # Agriculture
-  - ZC=F        # Corn
-  - ZS=F        # Soybeans
-  - CT=F        # Cotton No.2
   - KC=F        # Coffee
-  - SB=F        # Sugar
-  - CC=F        # Cocoa
-  - LE=F        # Live Cattle
-  - HE=F        # Lean Hogs
-  - OJ=F        # Orange Juice
-  - FC=F        # Feeder Cattle
 
 # Indices
   - ^NDX        # Nasdaq 100
@@ -35,10 +23,8 @@ tickers:
   - ^GDAXI      # DAX (Germany 40)
   - ^FCHI       # CAC 40 (France)
   - ^N225       # Nikkei 225
-  - ^HSI        # Hang Seng Index
   - ^ASX200     # Australia 200
   - ^STOXX50E   # Euro Stoxx 50
-  - ^VIX        # Volatility Index (S&P 500)
 
 # Equities
   - NVDA        # NVIDIA Corporation
